@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import Tuple
-from PIL import Image
-
 import imageio
 import argparse
 import os
@@ -104,7 +102,8 @@ def run_simulation(grid: np.array, fps: int) -> None:
     filenames = [f'pics/pic{num}.png' for num in range(counter + 1)]
     images = [imageio.imread(filename) for filename in filenames]
     imageio.mimsave('movie.gif', images, loop=1, fps=fps)
-    dont_notice_me_pls = list(map(os.remove, filenames))
+    _ = list(map(os.remove, filenames))
+
 
 if __name__ == '__main__':
 	print('Started !')
