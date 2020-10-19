@@ -7,7 +7,7 @@
 
 
 # Постановка задачи:
-![alt text](https://github.com/HuviX/forget_to_remember/blob/master/nudes.jpg)
+![alt text](https://github.com/HuviX/mai/blob/main/it_labs/forget_to_remember/nudes.jpg)
 
 # Краткое инфо
 
@@ -25,4 +25,4 @@
 
 # Результат
 
-Результат представлен в гифке: ![линк](https://github.com/HuviX/forget_to_remember/blob/master/movie.gif)
+Результат представлен в гифке: ![линк](https://github.com/HuviX/mai/blob/main/it_labs/forget_to_remember/movie.gif)
