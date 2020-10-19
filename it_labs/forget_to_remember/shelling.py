@@ -1,10 +1,7 @@
-import argparse
-import os
 import numpy as np
 from typing import Tuple
 from utils import plot_grid
 import imageio
-
 
 
 def get_row_col(index: int, width: int) -> Tuple[int, int]:
@@ -18,8 +15,8 @@ class Shelling():
         self.n = n
         self.create_grid()
     
-    
-    def create_grid(self):
+    #Перепишу на numpy (без циклов), но позже, чтобы не возникало вопросов о плагиате.
+    def create_grid(self)->None:
         size = self.n * self.n
         fraction = 0.9
         indices = list(range(size))
@@ -39,8 +36,8 @@ class Shelling():
             self.grid[row, col] = 1
 
     #Скользящее окно размера 3х3
-    #Перепишу на numpy (без циклов), но позже, чтобы не вопросов о плагиате.
-    def get_nonhappy(self):
+    #Перепишу на numpy (без циклов), но позже, чтобы не возникало вопросов о плагиате.[2]
+    def get_nonhappy(self)->list:
         row, col = self.grid.shape
         ker_row, ker_col = 3, 3
         pad_height = int((ker_row-1)/2)
@@ -72,18 +69,16 @@ class Shelling():
         self.grid[new_row, new_col] = label
 
 
-    def run_simulation(self, fps: int) -> None:
+    def run_simulation(self, fps: int, path: str, name: str) -> None:
         counter = 0
-        plot_grid(self.grid, counter, self.n)
+        plot_grid(self.grid, path, counter, self.n)
         non_happy = self.get_nonhappy()
-
         while len(non_happy) != 0:
             counter += 1
             self.make_change(non_happy)
             non_happy = self.get_nonhappy()
-            plot_grid(self.grid, counter, self.n)
+            plot_grid(self.grid, path, counter, self.n, )
 
-        filenames = [f'pics/pic{num}.png' for num in range(counter + 1)]
+        filenames = [f'{path}/pic{num}.png' for num in range(counter + 1)]
         images = [imageio.imread(filename) for filename in filenames]
-        imageio.mimsave('movie.gif', images, loop=1, fps=fps)
-        _ = list(map(os.remove, filenames))
+        imageio.mimsave(f'{name}.gif', images, loop=1, fps=fps)

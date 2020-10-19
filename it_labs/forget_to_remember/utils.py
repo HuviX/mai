@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # n - размер поля.
-def plot_grid(grid: np.array, counter: int, n: int) -> None:
+def plot_grid(grid: np.array, path: str, counter: int, n: int) -> None:
     colord = {-1: (0, 0, 255),
                1: (255, 0, 0),
                0: (255, 255, 255)}
@@ -20,5 +20,5 @@ def plot_grid(grid: np.array, counter: int, n: int) -> None:
     plt.scatter(y, x, c = c1, s = 100)
     plt.title("Shelling's model", loc='left')
     plt.title(f"Iter.:{counter}", loc='right')
-    plt.savefig('pics/pic{}.png'.format(counter))
+    plt.savefig(f"{path}/pic{counter}.png")
     plt.close()
