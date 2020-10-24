@@ -1,2 +1,2 @@
 # optimizations
-![photo](https://github.com/HuviX/optimizations/blob/master/Figure_1.png)
+![photo](https://github.com/HuviX/mai/tree/main/optimizations/project/Figure_1.png)
