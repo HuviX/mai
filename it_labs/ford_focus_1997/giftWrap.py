@@ -97,7 +97,6 @@ class giftWrappingAlg:
             if draw_points:
                 pygame.draw.circle(self.screen, self.convex_color, (p.x, p.y), self.size*2)
             if i < len(self.res_points)-1:
-                print('it')
                 pygame.draw.line(self.screen, self.convex_color, (p.x, p.y), (self.res_points[i+1].x, self.res_points[i+1].y))
                 time.sleep(0.1)
             pygame.display.update()
