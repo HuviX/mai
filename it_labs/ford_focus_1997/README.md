@@ -1,4 +1,4 @@
-to run `python3 main.py --animate (1 or 0) --n N --path`
+to run `python3 main.py --animate (1 or 0) --n N --path /path/to/textfile/`
 
 `path` - путь к файлу с точками, который заданы посторчно в формате `x,y` (см.пример, файл `points.txt`)
  
