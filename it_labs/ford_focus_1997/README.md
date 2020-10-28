@@ -68,12 +68,12 @@ to run `python3 main.py --animate (1 or 0) --n N --path /path/to/textfile/`
 
 ## Примеры работы
 
-![линк](pics/animation.gif)
+![линк](animation.gif)
 
 Для 2 точек: 
 
-![image-20201028200725041](pics/image-20201028200725041.png)
+![image-20201028200725041](image-20201028200725041.png)
 
 Для одной точки:
 
-![image-20201028200812680](pics/image-20201028200812680.png)
+![image-20201028200812680](image-20201028200812680.png)
