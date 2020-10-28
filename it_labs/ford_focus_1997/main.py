@@ -65,9 +65,9 @@ if __name__ == '__main__':
     pnts = get_points(n, args.path, randomized)
     pnts = sorted(pnts, key=lambda p: p.x)
 
-    if len(pnts) < 3:
-        img = Image.open("show_it_when_invalid_data.jpg")
-        img.show()
+#    if len(pnts) < 3:
+#        img = Image.open("show_it_when_invalid_data.jpg")
+#        img.show()
 
     pygame.init()
     screen = pygame.display.set_mode((W, H))
