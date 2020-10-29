@@ -1,9 +1,5 @@
 from dataclasses import dataclass
 
-"""
-От создателей "Вы там в Тинькоффе программируете?"
-"""
-
 
 @dataclass
 class Point:
