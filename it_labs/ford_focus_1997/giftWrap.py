@@ -19,7 +19,7 @@ class giftWrappingAlg:
             self.algorithm = self.find_convex_shape_draw
         self.start_draw()
 
-
+    #В начале точки наносятся канвас.
     def start_draw(self):
         pygame.draw.circle(self.screen, self.convex_color, (self.left_most.x, self.left_most.y), self.size*2)
         pygame.display.update()
@@ -39,8 +39,8 @@ class giftWrappingAlg:
 
     def cross_product(self, x, y)->int:
         return y[1]*x[0] - y[0]*x[1]
-
-
+        
+    #Алгоритм поиска. Использует векторное произведение как проверку.    
     def find_convex_shape(self)->List[Point]:
         current_vertex = self.points[0]
         index = 1
@@ -64,6 +64,7 @@ class giftWrappingAlg:
         return self.res_points
 
 
+    #Такой же алгоритм поиска, но при этом есть отрисовка текущих проверяемых верщин на каждом шаге.
     def find_convex_shape_draw(self)->List[Point]:
         current_vertex = self.points[0]
         index = 1
@@ -74,6 +75,7 @@ class giftWrappingAlg:
             index = (index + 1) % (len(self.points))
             next_vertex = self.points[index]
             for p in self.points:
+                #Отрисовка линии от текущей верщины до проверяемой.
                 pygame.draw.line(self.screen, self.line_color, (current_vertex.x, current_vertex.y),
                                             (p.x, p.y))
                 pygame.display.update()
@@ -91,7 +93,7 @@ class giftWrappingAlg:
         self.draw_contour()
         return self.res_points
 
-
+    # В конце рисуется контур и точки красненькие, которые показывают выпуклую область.
     def draw_contour(self, draw_points = False):
         for i, p in enumerate(self.res_points):
             if draw_points:

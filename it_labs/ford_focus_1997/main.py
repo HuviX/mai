@@ -57,6 +57,7 @@ if __name__ == '__main__':
     animate = args.animate
     n = args.n
     path = args.path
+    #Нужно ли случайно создавать точки или взять из файла, для этого есть флаг randomized
     if path == "":
         randomized = True
     else:
@@ -65,9 +66,6 @@ if __name__ == '__main__':
     pnts = get_points(n, args.path, randomized)
     pnts = sorted(pnts, key=lambda p: p.x)
 
-#    if len(pnts) < 3:
-#        img = Image.open("show_it_when_invalid_data.jpg")
-#        img.show()
 
     pygame.init()
     screen = pygame.display.set_mode((W, H))
@@ -81,6 +79,7 @@ if __name__ == '__main__':
 
 
     run = True
+    #чтобы выйти можно было на крестик
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
