@@ -5,9 +5,10 @@ from sklearn.model_selection import train_test_split
 
 f = lambda w, x: w[0] + w[1]*x + w[2]*x**2
 
-def gen_dataset(size):
+def gen_dataset(size, w = None):
     x = np.linspace(-5,5,size)
-    w = np.random.randint(low=-5, high=5, size=(3,))
+    if w == None:
+        w = np.random.randint(low=-5, high=5, size=(3,))
     y = f(w, x)
     #30 процентов в test, 70 в train
     x_train, y_train, x_test, y_test = train_test_split(x, y, test_size=0.3, shuffle=False)
