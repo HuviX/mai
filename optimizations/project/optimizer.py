@@ -3,7 +3,7 @@ from sklearn.metrics import mean_squared_error
 
 
 class Nadam():
-    def __init__(self, eta: int, beta1: int, beta2: int, early_stopping: float=1e-6):
+    def __init__(self, eta: float, beta1: float, beta2: float, early_stopping: float=1e-6):
         self.eta = eta
         self.beta1 = beta1
         self.beta2 = beta2
@@ -44,7 +44,7 @@ class Nadam():
             prev_w = self.w.copy()
             self.w -= (self.eta/(np.sqrt(m2)+self.eps))*m1
 
-            if abs(self.w - prev_w).all() < self.early_stopping:
+            if abs(np.linalg.norm(self.w - prev_w)) < self.early_stopping:
                 print("Early Stopping")
                 print(f"Current difference < {self.early_stopping}:", abs(self.w - prev_w))
                 return self.w, self.loss
@@ -76,13 +76,24 @@ class batchGD():
         self.eta = self.cache[0]
         data_size = y.shape[0]
         lr_history = []
-
+        indices = np.arange(data_size)
+        e = 0
         for i in range(niters):
+            
+            #Shuffle Data each epoch.
+            if i % data_size == 0:
+                np.random.shuffle(indices)
+                e += 1
+            
+            #Getting loss and prediction
             y_pred = self.func(self.w, x)
             cur_loss = self.metric(y, y_pred)
             self.loss.append(cur_loss)
-
-            index = (i + 1) %  data_size
+            
+            #take "random" index. We can assume random choice because of shuffling at each epoch.
+            index = indices[i %  data_size]
+            
+            #getting prediction for specific element to get gradient and weigths update
             y_pred = self.func(self.w, x[index])
             grad = self.get_grads(y[index], y_pred, x[index])
             prev_w = self.w.copy()
@@ -92,11 +103,11 @@ class batchGD():
             if abs(self.w - prev_w).all() < self.early_stopping:
                 print("Early Stopping")
                 print(f"Current difference < {self.early_stopping}:", abs(self.w - prev_w))
-                return self.w, self.loss, lr_history
+                return self.w, self.loss, lr_history, e
 
             if i % self.decay_counter == 0:
                 self.eta *= self.lr_decay
             
         y_pred = self.func(self.w, x)
         self.loss.append(self.metric(y, y_pred))
-        return self.w, self.loss, lr_history
+        return self.w, self.loss, lr_history, e
