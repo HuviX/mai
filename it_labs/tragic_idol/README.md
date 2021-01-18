@@ -50,12 +50,12 @@ tree.to_png(filename)
 
 Для предсказания OS:
 
-![tree](my_tree_os.png)
+![tree](tree_pics/my_tree_os.png)
 
 Для предсказания мобильной OS:
 
-![tree](my_tree_mobile_os.png)
+![tree](tree_pics/my_tree_mobile_os.png)
 
 Для предсказания кофе/чай:
 
-![tree](my_tree_drink.png)
+![tree](tree_pics/my_tree_drink.png)
